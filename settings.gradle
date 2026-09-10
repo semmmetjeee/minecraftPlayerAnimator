@@ -17,5 +17,7 @@ include 'coreLib'
 include 'minecraft'
 
 include "minecraft:common"
-include "minecraft:fabric"
+if (!gradle.startParameter.projectProperties.containsKey("skipFabric")) {
+    include "minecraft:fabric"
+}
 include "minecraft:forge"
