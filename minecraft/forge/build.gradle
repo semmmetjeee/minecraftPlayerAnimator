@@ -38,7 +38,9 @@ dependencies {
     //*/
 }
 
-base {\n    archivesName = rootProject.archives_base_name + "-" + project.name\n}
+base {
+    archivesName = rootProject.archives_base_name + "-" + project.name
+}
 
 processResources {
     inputs.property "version", project.version
