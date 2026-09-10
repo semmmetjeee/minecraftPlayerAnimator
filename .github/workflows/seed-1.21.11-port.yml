@@ -1,0 +1,31 @@
+name: Seed 1.21.11 port
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seed-1.21.11-port.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Seed a branch from the latest compatible upstream port
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/KosmX/minecraftPlayerAnimator.git
+          git fetch --depth=1 upstream '1.21.6/7'
+          git checkout -B 1.21.11-port FETCH_HEAD
+          sed -i \
+            -e 's/^minecraft_version=.*/minecraft_version=1.21.11/' \
+            -e 's/^fabric_loader_version=.*/fabric_loader_version=0.18.3/' \
+            -e 's/^fabric_api_version=.*/fabric_api_version=0.140.2+1.21.11/' \
+            -e 's/^forge_version=.*/forge_version=21.11.45/' \
+            gradle.properties
+          git add gradle.properties
+          git commit -m "Port build target to Minecraft 1.21.11"
+          git push --force origin 1.21.11-port
