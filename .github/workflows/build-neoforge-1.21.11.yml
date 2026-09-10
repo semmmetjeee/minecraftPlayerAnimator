@@ -18,4 +18,4 @@ jobs:
           distribution: temurin
           java-version: "21"
       - uses: gradle/actions/setup-gradle@v4
-      - run: ./gradlew :minecraft:forge:build --no-daemon
+      - run: ./gradlew :minecraft:forge:build -PskipFabric --no-daemon
