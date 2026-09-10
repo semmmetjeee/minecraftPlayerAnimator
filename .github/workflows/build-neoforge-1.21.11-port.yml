@@ -1,0 +1,26 @@
+name: Build NeoForge 1.21.11 port
+
+on:
+  push:
+    branches:
+      - 1.21.11-port
+  pull_request:
+    branches:
+      - 1.21.11-port
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Build NeoForge jar
+        run: ./gradlew :minecraft:forge:build --no-daemon --stacktrace
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: playeranimator-neoforge-1.21.11
+          path: minecraft/forge/build/libs/*.jar
