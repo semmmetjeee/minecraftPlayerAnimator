@@ -16,7 +16,6 @@ project.mod_version = mod_version + "+" + minecraft_version
 
 allprojects {
     apply plugin: "java"
-    apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
     group = rootProject.maven_group
