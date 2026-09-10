@@ -1,6 +1,6 @@
 plugins {
-    id "architectury-plugin" version "3.4-SNAPSHOT"
-    id "dev.architectury.loom" version "1.10-SNAPSHOT" apply false
+    id "architectury-plugin" version "3.5-SNAPSHOT"
+    id "dev.architectury.loom" version "1.13-SNAPSHOT" apply false
 
     //Publishing
     id 'com.matthewprenger.cursegradle' version '1.4.0' apply false
@@ -16,11 +16,10 @@ project.mod_version = mod_version + "+" + minecraft_version
 
 allprojects {
     apply plugin: "java"
-    apply plugin: "architectury-plugin"
     apply plugin: "maven-publish"
 
     group = rootProject.maven_group
-    archivesBaseName = rootProject.archives_base_name
+    base { archivesName = rootProject.archives_base_name }
     version = rootProject.mod_version
 
     repositories {
