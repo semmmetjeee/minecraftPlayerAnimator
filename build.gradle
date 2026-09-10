@@ -19,7 +19,9 @@ allprojects {
     apply plugin: "maven-publish"
 
     group = rootProject.maven_group
-    archivesBaseName = rootProject.archives_base_name
+    base {
+        archivesName = rootProject.archives_base_name
+    }
     version = rootProject.mod_version
 
     repositories {
